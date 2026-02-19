@@ -1,0 +1,238 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.experience {
+  max-width: 900px;
+  margin-inline: auto;
+
+  &__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+  }
+
+  &__item {
+    display: flex;
+    gap: $spacing-lg;
+  }
+
+  &__marker {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+
+    @include respond-to('md') {
+      display: flex;
+    }
+  }
+
+  &__marker-dot {
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+    border-radius: $border-radius-full;
+    background: rgba($color-primary, 0.1);
+    color: $color-primary;
+    flex-shrink: 0;
+    border: 2px solid rgba($color-primary, 0.2);
+    transition: all $transition-base;
+
+    .experience__item--expanded & {
+      background: $color-primary;
+      color: $color-text-inverse;
+      border-color: $color-primary;
+    }
+  }
+
+  &__marker-line {
+    width: 2px;
+    flex: 1;
+    background: $color-border;
+    margin-top: $spacing-sm;
+  }
+
+  &__card {
+    flex: 1;
+    background: $color-bg-primary;
+    border: 1px solid $color-border;
+    border-radius: $border-radius-xl;
+    overflow: hidden;
+    transition: all $transition-base;
+
+    .experience__item--expanded & {
+      border-color: rgba($color-primary, 0.3);
+      box-shadow: $shadow-md;
+    }
+  }
+
+  &__card-header {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $spacing-md;
+    padding: $spacing-xl;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background $transition-fast;
+
+    &:hover {
+      background: $color-bg-secondary;
+    }
+  }
+
+  &__card-info {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__role {
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: $color-text-primary;
+
+    @include respond-to('md') {
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__company {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $color-primary;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-top: $spacing-xs;
+  }
+
+  &__period,
+  &__location {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    font-weight: $font-weight-medium;
+  }
+
+  &__toggle-icon {
+    @include flex-center;
+    width: 32px;
+    height: 32px;
+    border-radius: $border-radius-md;
+    color: $color-text-muted;
+    flex-shrink: 0;
+    transition: all $transition-fast;
+
+    &:hover {
+      background: $color-bg-tertiary;
+    }
+  }
+
+  &__card-body {
+    padding: 0 $spacing-xl $spacing-xl;
+    animation: slideDown 0.3s ease;
+  }
+
+  &__tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__tech-tag {
+    display: inline-block;
+    padding: $spacing-xs $spacing-md;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    color: $color-primary;
+    background: rgba($color-primary, 0.06);
+    border-radius: $border-radius-full;
+    border: 1px solid rgba($color-primary, 0.15);
+  }
+
+  &__highlights {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__highlight {
+    position: relative;
+    padding-left: $spacing-lg;
+    font-size: $font-size-sm;
+    line-height: $line-height-relaxed;
+    color: $color-text-secondary;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      border-radius: $border-radius-full;
+      background: $color-primary-light;
+    }
+  }
+
+  &__achievements {
+    background: rgba($color-primary, 0.03);
+    border-radius: $border-radius-lg;
+    padding: $spacing-lg;
+    border: 1px solid rgba($color-primary, 0.08);
+  }
+
+  &__achievements-title {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $color-primary;
+    margin-bottom: $spacing-md;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  &__achievements-list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  &__achievement {
+    position: relative;
+    padding-left: $spacing-lg;
+    font-size: $font-size-sm;
+    line-height: $line-height-relaxed;
+    color: $color-text-secondary;
+
+    &::before {
+      content: '★';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: $color-warning;
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

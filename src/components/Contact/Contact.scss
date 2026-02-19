@@ -1,0 +1,129 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.contact {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-3xl;
+
+  @include respond-to('lg') {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  &__cta {
+    text-align: center;
+
+    @include respond-to('lg') {
+      text-align: left;
+    }
+  }
+
+  &__cta-icon {
+    @include flex-center;
+    width: 72px;
+    height: 72px;
+    border-radius: $border-radius-2xl;
+    background: linear-gradient(135deg, $color-primary, $color-accent);
+    color: $color-text-inverse;
+    margin-bottom: $spacing-xl;
+
+    @include respond-to('lg') {
+      margin-inline: 0;
+    }
+
+    margin-inline: auto;
+  }
+
+  &__cta-title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-text-inverse;
+    margin-bottom: $spacing-md;
+
+    @include respond-to('md') {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__cta-text {
+    font-size: $font-size-md;
+    line-height: $line-height-relaxed;
+    color: $color-text-muted;
+    margin-bottom: $spacing-2xl;
+    max-width: 450px;
+
+    @include respond-to('lg') {
+      margin-inline: 0;
+    }
+
+    margin-inline: auto;
+  }
+
+  &__cta-btn {
+    @include button-base;
+    background: $color-primary;
+    color: $color-text-inverse;
+    padding: $spacing-md $spacing-2xl;
+    font-size: $font-size-md;
+
+    &:hover {
+      background: $color-primary-light;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba($color-primary, 0.3);
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    padding: $spacing-lg;
+    border-radius: $border-radius-lg;
+    background: $color-bg-dark-secondary;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all $transition-base;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba($color-primary, 0.3);
+      transform: translateX(4px);
+    }
+  }
+
+  &__link-icon {
+    @include flex-center;
+    width: 44px;
+    height: 44px;
+    border-radius: $border-radius-lg;
+    background: rgba($color-primary, 0.15);
+    color: $color-primary-light;
+    flex-shrink: 0;
+  }
+
+  &__link-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__link-label {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__link-value {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $color-text-inverse;
+  }
+}

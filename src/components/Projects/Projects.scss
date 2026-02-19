@@ -1,0 +1,86 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.projects {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
+  max-width: 700px;
+  margin-inline: auto;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    max-width: none;
+  }
+
+  &__card {
+    @include card;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__card-header {
+    @include flex-between;
+  }
+
+  &__card-icon {
+    @include flex-center;
+    width: 48px;
+    height: 48px;
+    border-radius: $border-radius-lg;
+    background: rgba($color-primary, 0.08);
+    color: $color-primary;
+  }
+
+  &__card-link {
+    @include flex-center;
+    width: 36px;
+    height: 36px;
+    border-radius: $border-radius-md;
+    color: $color-text-muted;
+    transition: all $transition-fast;
+
+    &:hover {
+      color: $color-primary;
+      background: rgba($color-primary, 0.06);
+    }
+  }
+
+  &__card-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-text-primary;
+  }
+
+  &__card-period {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    font-weight: $font-weight-medium;
+  }
+
+  &__card-description {
+    font-size: $font-size-sm;
+    line-height: $line-height-relaxed;
+    color: $color-text-secondary;
+    flex: 1;
+  }
+
+  &__card-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    margin-top: auto;
+  }
+
+  &__card-tag {
+    display: inline-block;
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    color: $color-accent;
+    background: rgba(6, 182, 212, 0.06);
+    border-radius: $border-radius-sm;
+    font-family: $font-family-mono;
+  }
+}

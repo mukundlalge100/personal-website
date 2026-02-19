@@ -1,0 +1,75 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-3xl;
+
+  @include respond-to('lg') {
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: start;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  &__description {
+    @include body-text;
+  }
+
+  &__extra {
+    @include body-text;
+  }
+
+  &__info-card {
+    @include card;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+  }
+
+  &__info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-md;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-xs;
+    }
+  }
+
+  &__info-icon {
+    color: $color-primary;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  &__info-label {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__info-value {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+
+    &--link {
+      color: $color-primary;
+      transition: color $transition-fast;
+
+      &:hover {
+        color: $color-primary-dark;
+      }
+    }
+  }
+}

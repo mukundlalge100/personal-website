@@ -1,0 +1,299 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  &__bg-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba($color-primary, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba($color-primary, 0.04) 0%, transparent 50%);
+  }
+
+  &__bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba($color-primary, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba($color-primary, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  &__container {
+    @include container;
+    position: relative;
+    z-index: 1;
+    padding-block: $spacing-5xl;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-3xl;
+
+    @include respond-to('lg') {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: $spacing-4xl;
+    }
+  }
+
+  &__content {
+    max-width: 800px;
+    animation: heroFadeIn 0.8s ease forwards;
+
+    @include respond-to('lg') {
+      flex: 1;
+      max-width: 620px;
+    }
+  }
+
+  &__photo-wrapper {
+    position: relative;
+    flex-shrink: 0;
+    animation: heroFadeIn 1s ease 0.2s forwards;
+    opacity: 0;
+    order: -1;
+
+    @include respond-to('lg') {
+      order: 1;
+    }
+  }
+
+  &__photo-ring {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    border-radius: $border-radius-full;
+    padding: 5px;
+    background: linear-gradient(135deg, $color-primary, $color-accent, $color-primary-light);
+    animation: ringRotate 8s linear infinite;
+    background-size: 200% 200%;
+
+    @include respond-to('md') {
+      width: 320px;
+      height: 320px;
+    }
+
+    @include respond-to('lg') {
+      width: 380px;
+      height: 380px;
+      padding: 6px;
+    }
+  }
+
+  &__photo-glow {
+    position: absolute;
+    inset: -15px;
+    border-radius: $border-radius-full;
+    background: linear-gradient(135deg, rgba($color-primary, 0.25), rgba($color-accent, 0.2));
+    filter: blur(30px);
+    z-index: -1;
+    animation: glowPulse 4s ease-in-out infinite;
+  }
+
+  &__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: $border-radius-full;
+    border: 4px solid $color-bg-primary;
+    display: block;
+  }
+
+  &__photo-dots {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 80px;
+    height: 80px;
+    background-image:
+      radial-gradient(circle, rgba($color-primary, 0.3) 1.5px, transparent 1.5px);
+    background-size: 12px 12px;
+    z-index: -1;
+
+    @include respond-to('md') {
+      width: 100px;
+      height: 100px;
+      bottom: -15px;
+      right: -15px;
+    }
+  }
+
+  &__greeting {
+    display: inline-block;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    color: $color-primary;
+    margin-bottom: $spacing-md;
+    letter-spacing: 0.05em;
+
+    @include respond-to('md') {
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__name {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-extrabold;
+    line-height: $line-height-tight;
+    letter-spacing: -0.03em;
+    margin-bottom: $spacing-md;
+    @include gradient-text;
+
+    @include respond-to('md') {
+      font-size: $font-size-5xl;
+    }
+
+    @include respond-to('lg') {
+      font-size: 4.5rem;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    color: $color-text-secondary;
+    margin-bottom: $spacing-xl;
+
+    @include respond-to('md') {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &__summary {
+    @include body-text;
+    max-width: 650px;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-bottom: $spacing-3xl;
+  }
+
+  &__btn {
+    @include button-base;
+
+    &--primary {
+      @include button-primary;
+    }
+
+    &--outline {
+      @include button-outline;
+    }
+  }
+
+  &__stats {
+    display: flex;
+    gap: $spacing-2xl;
+    flex-wrap: wrap;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__stat-value {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
+
+    @include respond-to('md') {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &__stat-label {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    font-weight: $font-weight-medium;
+  }
+
+  &__scroll-indicator {
+    position: absolute;
+    bottom: $spacing-2xl;
+    left: 50%;
+    transform: translateX(-50%);
+    background: none;
+    border: 2px solid $color-border;
+    border-radius: $border-radius-full;
+    width: 44px;
+    height: 44px;
+    @include flex-center;
+    color: $color-text-muted;
+    cursor: pointer;
+    transition: all $transition-base;
+    animation: bounce 2s infinite;
+    z-index: 1;
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+  }
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-8px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+@keyframes ringRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}

@@ -1,0 +1,56 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.footer {
+  background: $color-bg-dark;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: $spacing-xl 0;
+
+  &__container {
+    @include container;
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+
+    @include respond-below('sm') {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__copyright {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    font-weight: $font-weight-medium;
+  }
+
+  &__tagline {
+    font-size: $font-size-xs;
+    color: rgba(148, 163, 184, 0.6);
+  }
+
+  &__socials {
+    display: flex;
+    gap: $spacing-sm;
+  }
+
+  &__social-link {
+    @include flex-center;
+    width: 36px;
+    height: 36px;
+    border-radius: $border-radius-md;
+    color: $color-text-muted;
+    transition: all $transition-fast;
+
+    &:hover {
+      color: $color-primary-light;
+      background: rgba($color-primary, 0.1);
+    }
+  }
+}

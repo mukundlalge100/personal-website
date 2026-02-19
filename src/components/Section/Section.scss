@@ -1,0 +1,72 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include section-padding;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+
+  &--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &--default {
+    background-color: $color-bg-primary;
+  }
+
+  &--alternate {
+    background-color: $color-bg-secondary;
+  }
+
+  &--dark {
+    background-color: $color-bg-dark;
+    color: $color-text-inverse;
+  }
+
+  &__container {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+
+    @include respond-to('md') {
+      margin-bottom: $spacing-4xl;
+    }
+  }
+
+  &__title {
+    @include heading-lg;
+    color: $color-text-primary;
+    margin-bottom: $spacing-md;
+
+    .section--dark & {
+      color: $color-text-inverse;
+    }
+  }
+
+  &__subtitle {
+    @include body-text;
+    max-width: 600px;
+    margin-inline: auto;
+
+    .section--dark & {
+      color: $color-text-muted;
+    }
+  }
+
+  &__divider {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, $color-primary, $color-accent);
+    border-radius: $border-radius-full;
+    margin: $spacing-lg auto 0;
+  }
+
+  &__content {
+    width: 100%;
+  }
+}
